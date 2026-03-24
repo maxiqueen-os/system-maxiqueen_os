@@ -17,7 +17,7 @@
 <script>
 
 async function register() {
-  const response = await fetch("http://127.0.0.1:8000/register", {
+  const response = await fetch("http://127.0.0.1:8000/users/register", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -1887,18 +1887,21 @@ function formatText(text){
 
 async function sendMessage(){
 
-  const localResponse = getResponse(userText);
-
-if(localResponse){
-    messages.innerHTML += `<div class="bot">${localResponse}</div>`;
-    return;
-}
   const message = input.value.trim();
   if(!message) return;
 
   appendMessage(message, "user");
   input.value = "";
 
+  // 🧠 1. intentar respuesta local
+  const localResponse = getResponse(message);
+
+  if(localResponse){
+    appendMessage(localResponse, "bot");
+    return;
+  }
+
+  // 🤖 2. backend IA
   try{
 
     const response = await fetch("http://127.0.0.1:8000/chat/", {
@@ -1907,9 +1910,9 @@ if(localResponse){
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-  user_id: 1,
-  message: message
-})
+        user_id: "1",
+        message: message
+      })
     });
 
     const data = await response.json();
