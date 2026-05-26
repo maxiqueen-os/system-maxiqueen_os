@@ -1,0 +1,63 @@
+/* BOTONES */
+
+.mq-btn-access{
+    display:inline-flex;
+    align-items:center;
+    padding:15px 25px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:12px;
+    transition:.4s;
+    border:2px solid transparent;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+.mq-btn-access.primary{
+    background:var(--tech-blue);
+    color:white;
+    box-shadow:0 0 20px rgba(45,185,255,.35);
+}
+
+/* =====================
+   WHATSAPP FLOAT
+===================== */
+.whatsapp-float{
+  position:fixed;
+  bottom:22px;
+  left:22px;
+  background:#25D366;
+  color:white;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);
+  z-index:1000;
+  transition:.25s cubic-bezier(.4,0,.2,1);
+}
+.whatsapp-float:hover{transform:scale(1.12);}
+
+
+/* =====================
+   TOGGLE TEMA
+===================== */
+.toggle-theme{
+  position:fixed;
+  top:18px;
+  right:18px;
+  background:var(--bg-soft);
+  border:1px solid rgba(64,255,255,.12);
+  padding:7px 16px;
+  border-radius:999px;
+  font-size:.8rem;
+  cursor:pointer;
+  z-index:1000;
+  backdrop-filter:blur(10px);
+  transition:.25s;
+}
+.toggle-theme:hover{transform:translateY(-1px);box-shadow:0
+
+  0 12px rgba(64,255,255,.25);} 
