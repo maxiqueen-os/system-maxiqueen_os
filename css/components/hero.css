@@ -1,0 +1,83 @@
+.hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+.main-subtitle {
+    font-size: 1.2rem;
+    opacity: 1 !important; /* Forzamos opacidad completa */
+    margin-top: 20px;
+    color: #F9FAFB !important; /* Blanco brillante */
+}
+
+/* ==================================================
+   🔥 ESTA ES LA ARTILLERÍA PESADA PARA EL CONTENIDO OPACADO
+   ================================================== */
+
+/* Forzar visibilidad absoluta en cualquier texto dentro de la zona hero */
+.hero-section p, 
+.hero-section span, 
+.hero-section div {
+    color: #E5E7EB !important; /* Blanco nítido */
+    opacity: 1 !important;       /* Rompe cualquier transparencia */
+}
+
+/* Forzar que el título amarillo de "Ver demo CRM" brille pase lo que pase */
+.hero-section h3, 
+.hero-section h2, 
+.hero-section h4 {
+    color: #FBBF24 !important; /* Amarillo/Dorado brillante */
+    opacity: 1 !important;
+}
+
+/* Hacer totalmente legibles tus enlaces (Builder Chat, Sudoku, etc.) */
+.hero-section a {
+    color: #60A5FA !important; /* Azul claro nítido */
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+}
+
+/* Efecto interactivo al pasar el mouse */
+.hero-section a:hover {
+    color: #93C5FD !important;
+}
+
+/* ==================================================
+   ILUMINACIÓN GLOBAL DE TEXTOS OPACADOS (PÁGINA)
+   ================================================== */
+
+/* Forzar que todas las descripciones grises de la página se vuelvan blanco hueso legible */
+p, span, .main-subtitle {
+    color: #E5E7EB !important; /* Blanco nítido de alta visibilidad */
+    opacity: 1 !important;       /* Destruye cualquier transparencia que lo apague */
+}
+
+/* Forzar que los títulos secundarios y nombres de prototipos resalten en dorado */
+h3, h4, h2 {
+    color: #FBBF24 !important; /* Amarillo/Dorado premium de MaxiQueen OS */
+    opacity: 1 !important;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Hacer totalmente visibles y llamativos los enlaces inferiores (Builder Chat, Sudoku, etc.) */
+a {
+    color: #f4ed15 !important; /* Azul claro eléctrico que resalta en fondo negro */
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+}
+
+/* Efecto interactivo al pasar el mouse por encima de los enlaces */
+a:hover {
+    color: #93C5FD !important; /* Azul brillante */
+}

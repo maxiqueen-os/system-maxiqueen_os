@@ -1,0 +1,27 @@
+#sidebar-container{
+    position:fixed;
+    left:0;
+    top:70px;
+    width:260px;
+    height:calc(100vh - 70px);
+    background:#0f172a;
+    border-right:1px solid rgba(255,255,255,.08);
+    z-index:999;
+}
+
+.mq-sidebar{
+    padding:30px 20px;
+}
+
+.mq-sidebar ul{
+    list-style:none;
+}
+
+.mq-sidebar li{
+    margin-bottom:18px;
+}
+
+.mq-sidebar a{
+    color:white;
+    text-decoration:none;
+}

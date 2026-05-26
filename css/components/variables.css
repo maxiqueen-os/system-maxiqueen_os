@@ -1,0 +1,14 @@
+:root {
+    --mq-bg: #020617;
+    --mq-panel: rgba(15, 23, 42, .82);
+    --mq-border: rgba(148, 163, 184, .18);
+    --mq-cyan: #22d3ee;
+    --mq-gold: #facc15;
+    --mq-green: #4ade80;
+    --mq-pink: #f472b6;
+    --mq-purple: #c084fc;
+    --mq-red: #f87171;
+    --mq-blue: #60a5fa;
+    --mq-text: #f8fafc;
+    --mq-muted: #94a3b8;
+}
