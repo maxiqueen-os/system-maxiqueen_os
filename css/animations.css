@@ -1,0 +1,48 @@
+.fade-in{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeIn .9s ease forwards;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes floatInfinite{
+  0%{
+    transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg);
+  }
+
+  25%{
+    transform:translate3d(0,6px,0) rotateX(1deg) rotateY(-1deg);
+  }
+
+  50%{
+    transform:translate3d(0,-4px,0) rotateX(-1deg) rotateY(1deg);
+  }
+
+  75%{
+    transform:translate3d(0,6px,0) rotateX(1deg) rotateY(-1deg);
+  }
+
+  100%{
+    transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes bounce-slow{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-14px);
+  }
+}
+
+.animate-bounce-slow{
+  animation:bounce-slow 3.2s ease-in-out infinite;
+}
