@@ -1,348 +1,131 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MAXIQUEEN OS — Builder OS 👑</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAXIQUEEN OS - Chat Widget</title>
 
-  <!-- ================= ANIMACIONES CSS ================= -->
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0b0f1a, #05070f);
-      color: #e5e7eb;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    .center {
-      text-align: center;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 40px rgba(0,0,0,0.3);
-    }
-
-    button {
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
-      border: none;
-      border-radius: 10px;
-      padding: 0.75rem 1.25rem;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    button.secondary {
-      background: rgba(255,255,255,0.08);
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    input {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 0.6rem 0.8rem;
-      color: white;
-      width: 100%;
-      outline: none;
-    }
-
-    .chat {
-      max-width: 700px;
-      margin: 2rem auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .messages {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      max-height: 420px;
-      overflow-y: auto;
-      padding-right: 0.25rem;
-    }
-
-    .msg {
-      padding: 0.6rem 0.8rem;
-      border-radius: 12px;
-      max-width: 85%;
-      line-height: 1.4;
-      white-space: pre-wrap;
-    }
-
-    .msg.user {
-      align-self: flex-end;
-      background: linear-gradient(135deg, #6366f1, #7c3aed);
-      color: white;
-    }
-
-    .msg.bot {
-      align-self: flex-start;
-      background: rgba(255,255,255,0.08);
-      color: #e5e7eb;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    footer {
-      margin-top: 4rem;
-      padding: 2rem 1rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-
-    footer a {
-      color: #a78bfa;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      cursor: pointer;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* ================= ANIMACIONES ================= */
-
-    @keyframes bounce-slow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    .animate-bounce-slow {
-      animation: bounce-slow 3s infinite;
-    }
-
-    @keyframes pulse-slow {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.35; }
-    }
-    .animate-pulse-slow {
-      animation: pulse-slow 6s infinite;
-    }
-
-    .glow {
-      box-shadow: 0 0 40px rgba(124,58,237,0.25);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 0.35rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(124,58,237,0.15);
-      color: #c4b5fd;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-  </style>
+    <link rel="stylesheet" href="../css/components/variables.css">
+    <link rel="stylesheet" href="../css/components/chat.css">
+    <link rel="stylesheet" href="../css/pages/chat-widget.css">
 </head>
-<body>
 
-  <div class="container center">
-    <span class="badge animate-pulse-slow">MAXIQUEEN OS 👑</span>
-    <h1 class="animate-bounce-slow">Builder OS para humanos reales</h1>
-    <p>Un sistema operativo mental, técnico y estratégico para crear, vender y escalar sin fragmentación.</p>
-  </div>
+<body class="mq-widget-page">
 
-  <div class="chat card glow">
-    <div class="messages" id="messages"></div>
-    <div class="input-row">
-      <input id="input" type="text" placeholder="Escribe aquí..." />
-      <button onclick="sendMessage()">Enviar</button>
-    </div>
-  </div>
+    <main class="mq-widget-shell">
+        <section class="mq-widget-intro" aria-labelledby="widget-title">
+            <span class="mq-widget-badge">MAXIQUEEN OS</span>
+            <h1 id="widget-title">Builder OS para humanos reales</h1>
+            <p>
+                Un chat unico para ordenar ideas, analizar archivos, revisar imagenes,
+                dictar por voz y activar IA cuando tus llaves Gemini esten listas.
+            </p>
+        </section>
 
-  <footer>
-    <div>
-      <a onclick="openLegal('privacy')">Privacidad</a> ·
-      <a onclick="openLegal('cookies')">Cookies</a> ·
-      <a onclick="openLegal('terms')">Términos</a>
-    </div>
-    <div style="margin-top:0.75rem;">
-      © <span id="year"></span> MaxiQueen OS. Todos los derechos reservados.
-    </div>
-  </footer>
+        <!-- CHAT UNICO MAXIQUEEN -->
+        <div class="mq-chat" id="mqChat" aria-live="polite">
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+            <div class="mq-chat-header">
 
-    const messagesEl = document.getElementById("messages");
-    const input = document.getElementById("input");
+                <div class="mq-agent">
+                    <div class="mq-avatar" id="mqAvatar" aria-hidden="true">
+                        <span class="mq-antenna"></span>
+                        <span class="mq-eye mq-eye-left"></span>
+                        <span class="mq-eye mq-eye-right"></span>
+                        <span class="mq-mouth"></span>
+                    </div>
 
-    function appendMessage(role, text) {
-      const div = document.createElement("div");
-      div.className = "msg " + role;
-      div.textContent = text;
-      messagesEl.appendChild(div);
-      messagesEl.scrollTop = messagesEl.scrollHeight;
-    }
+                    <div>
+                        <div class="chat-title">
+                            MAXI<span>QUEEN</span> AI
+                        </div>
+                        <div class="mq-status" id="mqStatus">
+                            Modo automatico
+                        </div>
+                    </div>
+                </div>
 
-    /* ================= SISTEMA DE ESTADO ================= */
+                <div class="mq-chat-controls">
+                    <button type="button" id="mqVoiceToggle" title="Activar o silenciar voz">Voz</button>
+                    <button type="button" id="mqMinimizeBtn" title="Minimizar chat">-</button>
+                </div>
 
-    const state = {
-      etapa: "inicio",
-      flujo: null
-    };
+            </div>
 
-    /* ================= INTENTS BASE ================= */
+            <div class="mq-signal-bar">
+                <span>Voz</span>
+                <span>Archivos</span>
+                <span>Vision</span>
+                <span>IA</span>
+            </div>
 
-    const intents = [
-      {
-        keywords: ["hola", "hey", "buenas"],
-        response: () => "Hola 👑 Bienvenido a MaxiQueen OS.\n\n¿Quieres explorar el sistema o resolver algo concreto hoy?"
-      },
-      {
-        keywords: ["precio", "coste", "cuesta"],
-        response: () => "Buena pregunta 👑\nMaxiQueen OS no es un producto único: es un sistema modular.\nPrimero entendemos tu situación y luego diseñamos la estructura correcta contigo."
-      },
-      {
-        keywords: ["contacto", "hablar", "persona"],
-        response: () => {
-          state.flujo = "flujo3";
-          return "Perfecto 👑\n¿Prefieres contacto por WhatsApp o Instagram?";
-        }
-      }
-    ];
+            <div class="mq-chat-body" id="mqChatBody">
+                <div class="mq-message bot">
+                    <div class="mq-bubble">
+                        Hola. Sistema MaxiQueen conectado en modo automatico. Si no hay llave activa respondo local; cuando actives tus llaves, uso IA y sigo con respaldo local si falla.
+                    </div>
+                </div>
+            </div>
 
-    /* ================= MOTOR DE RESPUESTA ================= */
+            <div class="mq-attachment-tray is-empty" id="mqAttachmentTray"></div>
 
-    function getResponse(message) {
-      const text = message.toLowerCase();
+            <div class="mq-voice-panel">
+                <button type="button" id="mqMicBtn" class="mq-chip-btn" title="Dictar mensaje">Mic</button>
+                <button type="button" id="mqPauseVoiceBtn" class="mq-chip-btn" title="Pausar voz">Pausa</button>
+                <button type="button" id="mqResumeVoiceBtn" class="mq-chip-btn" title="Continuar voz">Seguir</button>
+                <button type="button" id="mqStopVoiceBtn" class="mq-chip-btn" title="Detener voz">Stop</button>
+            </div>
 
-      // DESPUÉS DE RECOMENDACIÓN — MANTENER CONTEXTO
-      if (state.etapa === "recomendacion") {
-        if (text.includes("como") || text.includes("cómo") || text.includes("funciona") || text.includes("empezamos")) {
-          return `
-Buenísima pregunta 👑  
-Lo importante ahora no es el plan,
-es cómo empezamos contigo realmente.
-El proceso suele ser:
-1️⃣ Diagnóstico humano profundo  
-2️⃣ Orden mental y estratégico  
-3️⃣ Diseño de estructura mínima viable  
-4️⃣ Acompañamiento paso a paso  
-5️⃣ Evolución según tu ritmo  
+            <div class="mq-chat-input">
 
-No te tiramos info encima.
-Construimos contigo.
+                <label class="mq-file-btn" title="Subir archivo o foto">
+                    <input
+                        type="file"
+                        id="mqFileInput"
+                        multiple
+                        accept="image/*,application/pdf,text/*,.txt,.md,.csv,.json,.html,.css,.js,.py"
+                    >
+                    +
+                </label>
 
-Si quieres, dime:
-👉 ¿Prefieres avanzar paso a paso o ver primero el panorama completo? 👀
-          `.trim();
-        }
-        if (text.includes("si") || text.includes("sí") || text.includes("dale") || text.includes("ok")) {
-          return `
-Perfecto 👑  
-Entonces empezamos así:
-Primero te hago unas preguntas cortas
-para entender bien tu punto actual,
-y desde ahí construimos contigo.
+                <input
+                    type="text"
+                    id="mqInput"
+                    placeholder="Escribe, habla o adjunta un archivo..."
+                    autocomplete="off"
+                >
 
-Dime:
-👉 ¿Hoy estás más enfocado en ti como persona o en tu proyecto como negocio? 👀
-          `.trim();
-        }
-      }
+                <button type="button" id="mqSendBtn">
+                    Enviar
+                </button>
 
-      // FLUJO 3 — CONTACTO HUMANO
-      if (state.flujo === "flujo3") {
-        if (text.includes("whatsapp")) {
-          return `
-Perfecto 👑  
-Aquí tienes acceso directo a una persona real:
-📲 WhatsApp:
-👉 https://api.whatsapp.com/send/?phone=573016625921&text=Hola+MAXIQUEENOS.+Vengo+desde+la+p%C3%A1gina+y+quiero+aplicar+al+PROCESO.&type=phone_number&app_absent=0  
-(Escríbenos y seguimos contigo sin bots.)
-¿Quieres que mientras tanto sigamos conversando aquí? 👀
-          `.trim();
-        }
-        if (text.includes("instagram")) {
-          return `
-Perfecto 👑  
-Aquí puedes escribirnos directo:
-📲 Instagram:
-👉 https://www.instagram.com/maxiqueen_store?igsh=MXV5eWM3azR1cWpkbA%3D%3D  
-¿Quieres que mientras tanto sigamos conversando aquí? 👀
-          `.trim();
-        }
-      }
+            </div>
 
-      // 2️⃣ INTENTS NORMALES — BASE
-      for (const intent of intents) {
-        if (intent.keywords.some(k => text.includes(k))) {
-          return intent.response();
-        }
-      }
+        </div>
 
-      // Default
-      state.etapa = "recomendacion";
-      return "Entiendo 👑\nCuéntame un poco más qué estás buscando lograr ahora mismo.";
-    }
+        <button type="button" class="mq-burbuja-v2" title="Abrir MaxiQueen AI">
+            <video
+                src="https://res.cloudinary.com/maxiqueen-os/video/upload/v1777666946/animate-with-subtle-elegant-motion-soft-golden-shi_2_bk8qxt.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                class="mq-video-avatar">
+            </video>
+        </button>
+    </main>
 
-    /* ================= UI ================= */
+    <script>
+        window.MQ_GEMINI_KEYS = window.MQ_GEMINI_KEYS || [];
+    </script>
+    <script src="../js/systemPrompt.js" defer></script>
+    <script src="../js/api.js" defer></script>
+    <script src="../js/voice.js" defer></script>
+    <script src="../js/cloudinary.js" defer></script>
+    <script src="../js/chat.js" defer></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" async></script>
 
-    function openLegal(type) {
-      const pages = {
-        privacy: "privacidad.html",
-        cookies: "cookies.html",
-        terms: "terminos.html"
-      };
-
-      const url = pages[type];
-      if (url) window.open(url, "_blank");
-    }
-
-    function sendMessage() {
-      const message = input.value.trim();
-      if (!message) return;
-      appendMessage("user", message);
-      input.value = "";
-      setTimeout(() => {
-        const response = getResponse(message);
-        appendMessage("bot", response);
-      }, 200);
-    }
-
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter") sendMessage();
-    });
-
-    // Mensaje inicial
-    appendMessage("bot", "Hola 👑 Soy el sistema MaxiQueen OS.\n¿Quieres explorar cómo funciona o resolver algo puntual hoy?");
-  </script>
-
-<!--
-================ LICENSE =================
-
-MaxiQueen OS is licensed under the Apache License 2.0.
-
-You are free to use, modify, and distribute the core system, including for commercial purposes.
-However, the MaxiQueen OS name, branding, and premium modules are protected and not included
-under this license.
-
-See the LICENSE file for full details.
--->
 </body>
+
 </html>
