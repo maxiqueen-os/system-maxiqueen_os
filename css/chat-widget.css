@@ -1,0 +1,174 @@
+.mq-widget-page {
+    min-height: 100dvh;
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--mq-text, #f8fafc);
+    background:
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, .12), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(34, 211, 238, .14), transparent 28%),
+        radial-gradient(circle at 12% 18%, rgba(192, 132, 252, .14), transparent 30%),
+        linear-gradient(180deg, #05070f 0%, #020617 100%);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.mq-widget-page::before {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    content: "";
+    background:
+        linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .82), transparent 84%);
+}
+
+.mq-widget-shell {
+    display: grid;
+    min-height: 100dvh;
+    place-items: center;
+    gap: 22px;
+    padding: 34px 18px;
+}
+
+.mq-widget-intro {
+    width: min(860px, 100%);
+    text-align: center;
+}
+
+.mq-widget-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid rgba(250, 204, 21, .28);
+    border-radius: 999px;
+    background: rgba(250, 204, 21, .08);
+    color: #fde68a;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    box-shadow: 0 0 28px rgba(250, 204, 21, .12);
+}
+
+.mq-widget-intro h1 {
+    max-width: 780px;
+    margin: 18px auto 10px;
+    color: #fff;
+    font-size: clamp(34px, 6vw, 76px);
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: .98;
+    text-wrap: balance;
+}
+
+.mq-widget-intro p {
+    max-width: 720px;
+    margin: 0 auto;
+    color: #cbd5e1;
+    font-size: clamp(16px, 2.2vw, 21px);
+    line-height: 1.55;
+}
+
+.mq-widget-page .mq-chat {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(760px, calc(100vw - 28px));
+    height: min(690px, calc(100dvh - 230px));
+    min-height: 560px;
+    border-color: rgba(250, 204, 21, .18);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg, rgba(8, 13, 27, .98), rgba(15, 23, 42, .96)),
+        radial-gradient(circle at 50% 0%, rgba(250, 204, 21, .1), transparent 38%);
+    box-shadow:
+        0 32px 120px rgba(0, 0, 0, .62),
+        0 0 54px rgba(250, 204, 21, .12),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+.mq-widget-page .mq-chat-header {
+    min-height: 88px;
+}
+
+.mq-widget-page .mq-chat-body {
+    padding: 22px;
+}
+
+.mq-widget-page .mq-bubble {
+    max-width: min(88%, 560px);
+}
+
+.mq-widget-page .mq-quick-actions {
+    max-width: 100%;
+}
+
+.mq-widget-page .mq-chat.minimized {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: min(390px, calc(100vw - 24px));
+    height: min(640px, calc(100dvh - 32px));
+    min-height: 0;
+}
+
+.mq-widget-page .mq-burbuja-v2 {
+    right: 24px;
+    bottom: 24px;
+}
+
+@media (max-width: 720px) {
+    .mq-widget-shell {
+        justify-content: stretch;
+        padding: 18px 10px;
+    }
+
+    .mq-widget-intro h1 {
+        font-size: 38px;
+    }
+
+    .mq-widget-intro p {
+        font-size: 15px;
+    }
+
+    .mq-widget-page .mq-chat {
+        width: 100%;
+        height: calc(100dvh - 190px);
+        min-height: 520px;
+        border-radius: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .mq-widget-shell {
+        gap: 14px;
+        padding: 14px 0 0;
+    }
+
+    .mq-widget-intro {
+        padding: 0 14px;
+    }
+
+    .mq-widget-badge {
+        min-height: 30px;
+        font-size: 10px;
+    }
+
+    .mq-widget-intro h1 {
+        margin-top: 12px;
+        font-size: 32px;
+    }
+
+    .mq-widget-page .mq-chat {
+        width: 100%;
+        height: 70dvh;
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+        border-radius: 22px 22px 0 0;
+    }
+}
