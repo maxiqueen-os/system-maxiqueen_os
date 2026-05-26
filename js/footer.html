@@ -1,0 +1,58 @@
+<!-- ================= FOOTER FLOATEANTE ================= -->
+<footer class="py-6 mt-12 mx-6 text-center bg-black/50 backdrop-blur-md text-zinc-300 rounded-full shadow-inner fade-in">
+  <p class="mb-2 text-lg md:text-base">
+    Sistema desarrollado por <strong>César Julio Bedoya Barragán</strong>
+  </p>
+  <p>
+    <a href="https://orcid.org/0009-0004-4946-1374"
+       target="_blank"
+       rel="noopener"
+       class="text-amber-400 hover:underline hover:text-rose-400 transition-colors">
+      ORCID: 0009-0004-4946-1374
+    </a>
+  </p>
+
+  <div class="mt-4 flex justify-center gap-4 text-sm text-zinc-400">
+  <a href="privacidad.html" class="hover:text-amber-400 transition">Privacidad</a>
+  <a href="cookies.html" class="hover:text-amber-400 transition">Cookies</a>
+  <a href="terminos.html" class="hover:text-amber-400 transition">Términos</a>
+</div>
+
+</footer>
+
+<!-- ================= JS 3D HOVER ================= -->
+<script>
+const floatElements = document.querySelectorAll('.float-3d');
+const bgCircles = document.querySelectorAll('.background-circle');
+
+document.addEventListener('mousemove', e => {
+  const x = e.clientX / window.innerWidth - 0.5;
+  const y = e.clientY / window.innerHeight - 0.5;
+
+  floatElements.forEach(el => {
+    const depth = 18;
+    el.style.transform = `rotateY(${x * depth}deg) rotateX(${-y * depth}deg) translateZ(0)`;
+  });
+
+  bgCircles.forEach((el, i) => {
+    const factor = (i + 1) * 28;
+    el.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+  });
+});
+
+// Footer flotante con scroll (optimizado)
+const footer = document.querySelector('footer');
+let lastScrollY = 0;
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (Math.abs(scrollY - lastScrollY) < 4) return;
+  lastScrollY = scrollY;
+
+  const maxScroll = document.body.scrollHeight - window.innerHeight || 1;
+  const footerLift = (scrollY / maxScroll) * 26;
+  footer.style.transform = `translateY(-${footerLift}px)`;
+  footer.style.boxShadow = `0 ${10 + footerLift/2}px ${20 + footerLift/2}px rgba(0,0,0,0.45)`;
+});
+
+</script>
+

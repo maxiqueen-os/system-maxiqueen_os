@@ -1,0 +1,1 @@
+window.MQ_GEMINI_KEYS = [];
