@@ -4,121 +4,113 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAXIQUEEN OS - Chat Widget</title>
+    <title>MAXIQUEEN OS - Centro de Control</title>
 
     <link rel="stylesheet" href="../css/components/variables.css">
     <link rel="stylesheet" href="../css/components/chat.css">
-    <link rel="stylesheet" href="../css/pages/chat-widget.css">
+    <link rel="stylesheet" href="../css/pages/chat-widget.css"> 
 </head>
 
 <body class="mq-widget-page">
 
-    <main class="mq-widget-shell">
-        <section class="mq-widget-intro" aria-labelledby="widget-title">
-            <span class="mq-widget-badge">MAXIQUEEN OS</span>
-            <h1 id="widget-title">Builder OS para humanos reales</h1>
-            <p>
-                Un chat unico para ordenar ideas, analizar archivos, revisar imagenes,
-                dictar por voz y activar IA cuando tus llaves Gemini esten listas.
-            </p>
-        </section>
+    <main class="mq-system-layout">
+        
+        <aside class="mq-sidebar">
+            <div class="mq-brand">
+                <span class="mq-widget-badge">MAXIQUEEN OS</span>
+            </div>
+            
+            <nav class="mq-nav-modules">
+                <p class="mq-section-title">Módulos del Sistema</p>
+                <ul>
+                    <li><a href="MQ_OS_crm_demo no definida.html" class="mq-nav-link active">📊 CRM Empresa</a></li>
+                    <li><a href="MQ_OS_index pagina_de_ventas.html" class="mq-nav-link">💰 Panel de Ventas</a></li>
+                    <li><a href="#" class="mq-nav-link">🌐 Módulo Hosting</a></li>
+                    <li><a href="MQ_Paq_Panel_Validacion.html" class="mq-nav-link">🔑 Validación</a></li>
+                </ul>
 
-        <!-- CHAT UNICO MAXIQUEEN -->
-        <div class="mq-chat" id="mqChat" aria-live="polite">
+                <p class="mq-section-title">Herramientas</p>
+                <ul>
+                    <li><a href="#" class="mq-nav-link">📁 Administrador de Archivos</a></li>
+                    <li><a href="#" class="mq-nav-link">🎙️ Notas de Voz</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mq-sidebar-footer">
+                <span class="mq-status-indicator online"></span> Sistema Activo
+            </div>
+        </aside>
 
-            <div class="mq-chat-header">
+        <div class="mq-main-workspace">
 
-                <div class="mq-agent">
-                    <div class="mq-avatar" id="mqAvatar" aria-hidden="true">
-                        <span class="mq-antenna"></span>
-                        <span class="mq-eye mq-eye-left"></span>
-                        <span class="mq-eye mq-eye-right"></span>
-                        <span class="mq-mouth"></span>
-                    </div>
+            <section class="mq-widget-intro" aria-labelledby="widget-title">
+                <h1 id="widget-title">Builder OS para humanos reales</h1>
+                <p>
+                    Gestiona tu empresa, organiza ideas, analiza archivos y expande tu negocio desde un solo lugar.
+                </p>
+            </section>
 
-                    <div>
-                        <div class="chat-title">
-                            MAXI<span>QUEEN</span> AI
+            <div class="mq-chat" id="mqChat" aria-live="polite">
+
+                <div class="mq-chat-header">
+                    <div class="mq-agent">
+                        <div class="mq-avatar" id="mqAvatar" aria-hidden="true">
+                            <span class="mq-antenna"></span>
+                            <span class="mq-eye mq-eye-left"></span>
+                            <span class="mq-eye mq-eye-right"></span>
+                            <span class="mq-mouth"></span>
                         </div>
-                        <div class="mq-status" id="mqStatus">
-                            Modo automatico
+                        <div>
+                            <div class="chat-title">MAXI<span>QUEEN</span> AI</div>
+                            <div class="mq-status" id="mqStatus">Modo asistente</div>
+                        </div>
+                    </div>
+                    <div class="mq-chat-controls">
+                        <button type="button" id="mqVoiceToggle" title="Activar o silenciar voz">Voz</button>
+                        <button type="button" id="mqMinimizeBtn" title="Minimizar chat">-</button>
+                    </div>
+                </div>
+
+                <div class="mq-signal-bar">
+                    <span>Voz</span>
+                    <span>Archivos</span>
+                    <span>Visión</span>
+                    <span>IA</span>
+                </div>
+
+                <div class="mq-chat-body" id="mqChatBody">
+                    <div class="mq-message bot">
+                        <div class="mq-bubble">
+                            Hola. Sistema MaxiQueen conectado. Selecciona un módulo a la izquierda para empezar a trabajar o usa este espacio para procesar datos.
                         </div>
                     </div>
                 </div>
 
-                <div class="mq-chat-controls">
-                    <button type="button" id="mqVoiceToggle" title="Activar o silenciar voz">Voz</button>
-                    <button type="button" id="mqMinimizeBtn" title="Minimizar chat">-</button>
+                <div class="mq-attachment-tray is-empty" id="mqAttachmentTray"></div>
+
+                <div class="mq-voice-panel">
+                    <button type="button" id="mqMicBtn" class="mq-chip-btn">Mic</button>
+                    <button type="button" id="mqPauseVoiceBtn" class="mq-chip-btn">Pausa</button>
+                    <button type="button" id="mqResumeVoiceBtn" class="mq-chip-btn">Seguir</button>
+                    <button type="button" id="mqStopVoiceBtn" class="mq-chip-btn">Stop</button>
                 </div>
 
-            </div>
-
-            <div class="mq-signal-bar">
-                <span>Voz</span>
-                <span>Archivos</span>
-                <span>Vision</span>
-                <span>IA</span>
-            </div>
-
-            <div class="mq-chat-body" id="mqChatBody">
-                <div class="mq-message bot">
-                    <div class="mq-bubble">
-                        Hola. Sistema MaxiQueen conectado en modo automatico. Si no hay llave activa respondo local; cuando actives tus llaves, uso IA y sigo con respaldo local si falla.
-                    </div>
+                <div class="mq-chat-input">
+                    <label class="mq-file-btn" title="Subir archivo o foto">
+                        <input type="file" id="mqFileInput" multiple accept="image/*,application/pdf,text/*,.txt,.md,.csv,.json,.html,.css,.js,.py">
+                        +
+                    </label>
+                    <input type="text" id="mqInput" placeholder="Escribe un comando o mensaje..." autocomplete="off">
+                    <button type="button" id="mqSendBtn">Enviar</button>
                 </div>
-            </div>
 
-            <div class="mq-attachment-tray is-empty" id="mqAttachmentTray"></div>
-
-            <div class="mq-voice-panel">
-                <button type="button" id="mqMicBtn" class="mq-chip-btn" title="Dictar mensaje">Mic</button>
-                <button type="button" id="mqPauseVoiceBtn" class="mq-chip-btn" title="Pausar voz">Pausa</button>
-                <button type="button" id="mqResumeVoiceBtn" class="mq-chip-btn" title="Continuar voz">Seguir</button>
-                <button type="button" id="mqStopVoiceBtn" class="mq-chip-btn" title="Detener voz">Stop</button>
-            </div>
-
-            <div class="mq-chat-input">
-
-                <label class="mq-file-btn" title="Subir archivo o foto">
-                    <input
-                        type="file"
-                        id="mqFileInput"
-                        multiple
-                        accept="image/*,application/pdf,text/*,.txt,.md,.csv,.json,.html,.css,.js,.py"
-                    >
-                    +
-                </label>
-
-                <input
-                    type="text"
-                    id="mqInput"
-                    placeholder="Escribe, habla o adjunta un archivo..."
-                    autocomplete="off"
-                >
-
-                <button type="button" id="mqSendBtn">
-                    Enviar
-                </button>
-
-            </div>
-
-        </div>
-
-        <button type="button" class="mq-burbuja-v2" title="Abrir MaxiQueen AI">
-            <video
-                src="https://res.cloudinary.com/maxiqueen-os/video/upload/v1777666946/animate-with-subtle-elegant-motion-soft-golden-shi_2_bk8qxt.mp4"
-                autoplay
-                loop
-                muted
-                playsinline
-                class="mq-video-avatar">
-            </video>
+            </div> </div> <button type="button" class="mq-burbuja-v2" title="Abrir MaxiQueen AI">
+            <video src="https://res.cloudinary.com/maxiqueen-os/video/upload/v1777666946/animate-with-subtle-elegant-motion-soft-golden-shi_2_bk8qxt.mp4" autoplay loop muted playsinline class="mq-video-avatar"></video>
         </button>
+
     </main>
 
-    <script>
-        window.MQ_GEMINI_KEYS = window.MQ_GEMINI_KEYS || [];
-    </script>
+    <script>window.MQ_GEMINI_KEYS = window.MQ_GEMINI_KEYS || [];</script>
     <script src="../js/systemPrompt.js" defer></script>
     <script src="../js/api.js" defer></script>
     <script src="../js/voice.js" defer></script>
@@ -127,5 +119,4 @@
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" async></script>
 
 </body>
-
 </html>
