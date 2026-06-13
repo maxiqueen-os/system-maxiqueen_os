@@ -1,14 +1,89 @@
-<nav class="mq-navbar">
+plicación de mi funcionamiento
+<nav class="mq-navbar sticky top-0 z-50 bg-[#050814]/90 backdrop-blur-md border-b border-cyan-500/20" role="navigation" aria-label="Navegación principal MaxiQueen OS">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4 font-mono text-sm">
 
-    <div class="mq-logo">
+    <!-- Logo -->
+    <a href="index.html" class="mq-logo flex items-center gap-3 shrink-0 no-underline">
+      <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" aria-hidden="true"></span>
+      <span class="text-lg font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-fuchsia-500">
         MAXIQUEEN OS
+      </span>
+      <span class="hidden sm:inline text-[10px] text-cyan-500/60 border border-cyan-500/30 px-2 py-0.5 rounded">V2.0.26</span>
+    </a>
+
+    <!-- Links desktop -->
+    <div class="mq-nav-links hidden lg:flex items-center gap-6 text-gray-300">
+      <a href="index.html" class="hover:text-cyan-400 transition" data-nav="inicio">Inicio</a>
+      <a href="#modulo-perfil" class="hover:text-cyan-400 transition">Dashboard</a>
+      <a href="#modulo-ia" class="hover:text-fuchsia-400 transition">IA</a>
+      <a href="#modulo-juegos" class="hover:text-amber-400 transition">Arcade</a>
+      <a href="#modulo-crm-lab" class="hover:text-amber-400 transition">CRM</a>
+      <a href="#modulo-admin" class="hover:text-emerald-400 transition">Core</a>
+      <a href="#" id="openAsistenteNav" class="px-3 py-1.5 rounded-lg border border-cyan-500/40 text-cyan-400 hover:bg-cyan-500 hover:text-black transition font-bold">
+        Asistente MQ
+      </a>
     </div>
 
-    <div class="mq-nav-links">
-        <a href="#">Inicio</a>
-        <a href="#">Dashboard</a>
-        <a href="#">IA</a>
-        <a href="#">Assets</a>
+    <!-- Meta derecha -->
+    <div class="hidden md:flex items-center gap-4 text-xs text-gray-400">
+      <span class="hidden xl:inline">CÚCUTA_COL</span>
+      <span id="mq-nav-timer" class="text-cyan-400 font-bold tabular-nums">00:00:00</span>
+      <button id="mq-nav-toggle" class="lg:hidden p-2 rounded border border-gray-700 text-gray-300" aria-label="Abrir menú" aria-expanded="false">
+        ☰
+      </button>
     </div>
 
+    <!-- Botón hamburguesa móvil -->
+    <button id="mq-nav-toggle-m" class="lg:hidden p-2 rounded border border-gray-700 text-gray-300" aria-label="Abrir menú" aria-expanded="false">
+      ☰
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div id="mq-mobile-menu" class="lg:hidden hidden border-t border-cyan-500/10 bg-[#070b1e]/95 px-4 py-3 space-y-2 text-sm text-gray-300">
+    <a href="index.html" class="block py-2 hover:text-cyan-400">Inicio</a>
+    <a href="#modulo-perfil" class="block py-2 hover:text-cyan-400">Dashboard</a>
+    <a href="#modulo-ia" class="block py-2 hover:text-fuchsia-400">IA</a>
+    <a href="#modulo-juegos" class="block py-2 hover:text-amber-400">Arcade</a>
+    <a href="#modulo-crm-lab" class="block py-2 hover:text-amber-400">CRM Lab</a>
+    <a href="#modulo-admin" class="block py-2 hover:text-emerald-400">Core</a>
+    <a href="#" id="openAsistenteNavM" class="block py-2 text-cyan-400 font-bold">Asistente MaxiQueen OS</a>
+    <div class="pt-2 text-xs text-gray-500 border-t border-gray-800">SYS_LOC: CÚCUTA_COL · <span id="mq-nav-timer-m" class="text-cyan-400">00:00:00</span></div>
+  </div>
 </nav>
+
+<script>
+// Navbar MQ - timer + menú móvil + asistente
+(function(){
+  const toggle = document.getElementById('mq-nav-toggle-m') || document.getElementById('mq-nav-toggle');
+  const menu = document.getElementById('mq-mobile-menu');
+  if(toggle && menu){
+    toggle.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', open);
+    });
+    menu.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{ menu.classList.add('hidden'); toggle.setAttribute('aria-expanded','false'); });
+    });
+  }
+  // Reloj live, reutiliza el del index si ya existe
+  function tick(){
+    const t = new Date().toTimeString().split(' ')[0];
+    document.getElementById('mq-nav-timer') && (document.getElementById('mq-nav-timer').textContent = t);
+    document.getElementById('mq-nav-timer-m') && (document.getElementById('mq-nav-timer-m').textContent = t);
+    const live = document.getElementById('live-timer');
+    if(live) live.textContent = t + ' CORE_OS';
+  }
+  setInterval(tick, 1000); tick();
+
+  // Abrir asistente - engancha con tu chat flotante
+  function openAsistente(e){
+    e.preventDefault();
+    const frame = document.getElementById('mqBackendChatFrame');
+    if(frame){ frame.classList.remove('mq-hidden'); }
+    menu && menu.classList.add('hidden');
+  }
+  document.getElementById('openAsistenteNav')?.addEventListener('click', openAsistente);
+  document.getElementById('openAsistenteNavM')?.addEventListener('click', openAsistente);
+})();
+</script>
