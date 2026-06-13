@@ -1,8 +1,41 @@
 <!-- Modal legal -->
-<div id="legalModal" class="fixed inset-0 hidden bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
-  <div class="bg-zinc-900 text-zinc-200 max-w-xl w-full p-6 rounded-xl shadow-xl relative">
-    <button id="closeLegal" class="absolute top-3 right-3 text-zinc-400 hover:text-red-400 text-xl">✕</button>
-    <h2 id="legalTitle" class="text-xl font-bold mb-4"></h2>
-    <div id="legalContent" class="text-sm leading-relaxed space-y-3 max-h-[60vh] overflow-y-auto"></div>
+<div id="legalModal" class="fixed inset-0 z-[100] hidden bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+  <div class="min-h-full flex items-center justify-center p-4" data-legal-backdrop>
+    <div class="mq-card bg-[#090e22]/95 text-gray-200 max-w-xl w-full p-6 rounded-xl shadow-2xl relative border border-cyan-500/30">
+      <button type="button" id="closeLegal" class="absolute top-3 right-3 text-zinc-400 hover:text-red-400 text-xl leading-none" aria-label="Cerrar modal">✕</button>
+      <h2 id="legalTitle" class="text-xl font-bold mb-4 text-cyan-400"></h2>
+      <div id="legalContent" class="text-sm leading-relaxed space-y-3 max-h-[60vh] overflow-y-auto text-gray-300"></div>
+    </div>
   </div>
 </div>
+
+<script>
+// Cierre legalModal - compatible con tu js/modals.js
+(function(){
+  const modal = document.getElementById('legalModal');
+  const closeBtn = document.getElementById('closeLegal');
+  if(!modal ||!closeBtn) return;
+
+  function closeModal(){
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+  function openModal(){
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+  // expónelo por si tu js/modals.js lo llama
+  window.openLegalModal = openModal;
+  window.closeLegalModal = closeModal;
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.querySelector('[data-legal-backdrop]')?.addEventListener('click', (e) => {
+    if(e.target.hasAttribute('data-legal-backdrop')) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' &&!modal.classList.contains('hidden')) closeModal();
+  });
+})();
+</script>
