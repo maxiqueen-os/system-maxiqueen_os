@@ -391,97 +391,47 @@
     <script src="js/dashboard.js" defer></script>
     <script src="js/app.js" defer></script>
 
-<!-- MQ PRO v2 - NO TOCA TU CHAT -->
+<!-- MQ PRO v2.2 + REWARDS HUB - CESAR -->
 <style>
   .mq-pro-btn {
-    position: fixed;
-    right: 90px;
-    bottom: 20px;
-    z-index: 9999;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 2px solid #facc15;
-    background: #0a0a0a;
-    color: #facc15;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    transition: transform .15s ease, box-shadow .15s ease;
+    position: fixed; right: 90px; bottom: 20px; z-index: 9999;
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 2px solid #facc15; background: #0a0a0a; color: #facc15;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform .15s ease;
   }
-  .mq-pro-btn:hover { transform: scale(1.06); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
-  .mq-pro-btn:active { transform: scale(0.97); }
-
+  .mq-pro-btn:hover { transform: scale(1.06); }
   .mq-pro-frame {
-    position: fixed;
-    right: 20px;
-    bottom: 90px;
-    z-index: 9998;
-    width: 420px;
-    height: 680px;
-    max-height: calc(100vh - 110px);
-    border: 1px solid #facc15;
-    border-radius: 16px;
-    background: #000;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-    pointer-events: none;
+    position: fixed; right: 20px; bottom: 90px; z-index: 9998;
+    width: 420px; height: 680px; max-height: calc(100vh - 110px);
+    border: 1px solid #facc15; border-radius: 16px; background: #000;
+    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: flex; flex-direction: column;
+    opacity: 0; transform: translateY(12px); pointer-events: none;
     transition: opacity .2s ease, transform .2s ease;
   }
-  .mq-pro-frame.open {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-  }
-
+  .mq-pro-frame.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .mq-pro-header {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 12px;
-    background: #111;
-    border-bottom: 1px solid #2a2a2a;
-    color: #facc15;
-    font-family: system-ui, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 12px; background: #111; border-bottom: 1px solid #2a2a2a;
+    color: #facc15; font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600;
   }
-  .mq-pro-header button {
-    background: transparent;
-    border: none;
-    color: #facc15;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 4px 8px;
-    border-radius: 8px;
-  }
+  .mq-pro-header button { background: transparent; border: none; color: #facc15; cursor: pointer; font-size: 18px; padding: 4px 8px; border-radius: 8px; }
   .mq-pro-header button:hover { background: #1e1e1e; }
-
-  .mq-pro-frame iframe {
-    width: 100%;
-    flex: 1;
-    border: 0;
-    background: #000;
-  }
-
-  /* Móvil */
-  @media (max-width: 480px) {
+  .mq-tabs{display:flex;gap:6px;padding:8px 12px;background:#111;border-bottom:1px solid #2a2a2a}
+  .mq-tab{background:transparent;border:1px solid #333;color:#aaa;padding:6px 10px;border-radius:8px;font-size:12px;cursor:pointer}
+  .mq-tab.active{border-color:#facc15;color:#facc15}
+  .mq-pane{display:none;flex:1;overflow:hidden}
+  .mq-pane.active{display:flex;flex-direction:column}
+  .mq-pane iframe{width:100%;flex:1;border:0;background:#000}
+  .mq-rewards{padding:16px;font-family:system-ui,sans-serif;color:#ddd;font-size:13px;line-height:1.5;overflow:auto}
+  .mq-rewards h3{color:#facc15;margin:0 0 8px;font-size:15px}
+  .mq-rewards .mq-cta{display:inline-block;margin-top:10px;background:#facc15;color:#000;padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none}
+  .mq-rewards small{color:#888}
+  @media (max-width: 480px){
     .mq-pro-btn { right: 20px; bottom: 20px; }
-    .mq-pro-frame {
-      right: 0; left: 0; bottom: 0;
-      width: 100%;
-      height: 92vh;
-      max-height: 92vh;
-      border-radius: 16px 16px 0 0;
-    }
+    .mq-pro-frame { right:0; left:0; bottom:0; width:100%; height:92vh; max-height:92vh; border-radius:16px 16px 0 0; }
   }
 </style>
 
@@ -495,7 +445,22 @@
       <button id="mqProClose" title="Cerrar">✕</button>
     </div>
   </div>
-  <iframe src="https://maxiqueen-os-framework.vercel.app/" allow="microphone;clipboard-read;clipboard-write"></iframe>
+  <div class="mq-tabs">
+    <button class="mq-tab active" data-tab="chat">Chat</button>
+    <button class="mq-tab" data-tab="rewards">Rewards</button>
+  </div>
+  <div class="mq-pane active" id="pane-chat">
+    <iframe src="https://maxiqueen-os-framework.vercel.app/" allow="microphone;clipboard-read;clipboard-write"></iframe>
+  </div>
+  <div class="mq-pane" id="pane-rewards">
+    <div class="mq-rewards">
+      <h3>Gana puntos con Bing</h3>
+      <p>Activa Microsoft Rewards gratis y acumula puntos por buscar en Bing. Canjeables por gift cards Xbox/Microsoft.</p>
+      <p><small>Link de referido de Cesar. Tú también ganas puntos de bienvenida. Válido solo para usuarios nuevos en Colombia. Máx. 5 referidos/año.</small></p>
+      <a class="mq-cta" href="https://rewards.bing.com/welcome?rh=1F68F1DB&ref=rafsrchae" target="_blank" rel="noopener sponsored">Unirme a Rewards</a>
+      <p style="margin-top:12px"><small>Microsoft Rewards es independiente de MaxiQueen OS. Consulta términos en rewards.bing.com</small></p>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -504,33 +469,35 @@
   const frame = document.getElementById('mqProFrame');
   const closeBtn = document.getElementById('mqProClose');
   const minBtn = document.getElementById('mqProMin');
+  if(!btn || !frame) return;
 
   function setOpen(open){
     frame.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open);
     localStorage.setItem('mqProOpen', open ? '1' : '0');
   }
-
   btn.onclick = () => setOpen(!frame.classList.contains('open'));
   closeBtn.onclick = minBtn.onclick = () => setOpen(false);
-
-  // Cerrar con ESC
-  document.addEventListener('keydown', e => {
-    if(e.key === 'Escape') setOpen(false);
-  });
-
-  // Clic fuera para cerrar
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') setOpen(false); });
   document.addEventListener('click', e => {
     if(!frame.classList.contains('open')) return;
     if(frame.contains(e.target) || btn.contains(e.target)) return;
     setOpen(false);
   });
-
-  // Restaurar estado
   if(localStorage.getItem('mqProOpen') === '1') setOpen(true);
+
+  // Tabs
+  document.querySelectorAll('.mq-tab').forEach(t=>{
+    t.onclick = ()=>{
+      document.querySelectorAll('.mq-tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.mq-pane').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById('pane-'+t.dataset.tab).classList.add('active');
+    }
+  });
 })();
 </script>
-<!-- /MQ PRO v2 -->
+<!-- /MQ PRO v2.2 -->
     
 </body>
 </html>
