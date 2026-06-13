@@ -391,9 +391,146 @@
     <script src="js/dashboard.js" defer></script>
     <script src="js/app.js" defer></script>
 
-    <!-- MQ PRO - NO TOCA TU CHAT -->
-<style>.mq-pro-btn{position:fixed;right:90px;bottom:20px;z-index:999;width:56px;height:56px;border-radius:50%;border:2px solid #facc15;background:#000;cursor:pointer}.mq-pro-frame{position:fixed;right:20px;bottom:90px;z-index:999;width:380px;height:600px;border:1px solid #facc15;border-radius:16px;background:#000;display:none}.mq-pro-frame.open{display:block}</style>
-<button class="mq-pro-btn" onclick="document.getElementById('mqProFrame').classList.toggle('open')" title="MQ AI Pro con archivos">📎</button>
-<div id="mqProFrame" class="mq-pro-frame"><iframe src="https://maxiqueen-os-framework.vercel.app/" style="width:100%;height:100%;border:0" allow="microphone;clipboard-read;clipboard-write"></iframe></div>
+<!-- MQ PRO v2 - NO TOCA TU CHAT -->
+<style>
+  .mq-pro-btn {
+    position: fixed;
+    right: 90px;
+    bottom: 20px;
+    z-index: 9999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid #facc15;
+    background: #0a0a0a;
+    color: #facc15;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .mq-pro-btn:hover { transform: scale(1.06); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+  .mq-pro-btn:active { transform: scale(0.97); }
+
+  .mq-pro-frame {
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
+    z-index: 9998;
+    width: 420px;
+    height: 680px;
+    max-height: calc(100vh - 110px);
+    border: 1px solid #facc15;
+    border-radius: 16px;
+    background: #000;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .mq-pro-frame.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .mq-pro-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #111;
+    border-bottom: 1px solid #2a2a2a;
+    color: #facc15;
+    font-family: system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .mq-pro-header button {
+    background: transparent;
+    border: none;
+    color: #facc15;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+  .mq-pro-header button:hover { background: #1e1e1e; }
+
+  .mq-pro-frame iframe {
+    width: 100%;
+    flex: 1;
+    border: 0;
+    background: #000;
+  }
+
+  /* Móvil */
+  @media (max-width: 480px) {
+    .mq-pro-btn { right: 20px; bottom: 20px; }
+    .mq-pro-frame {
+      right: 0; left: 0; bottom: 0;
+      width: 100%;
+      height: 92vh;
+      max-height: 92vh;
+      border-radius: 16px 16px 0 0;
+    }
+  }
+</style>
+
+<button class="mq-pro-btn" id="mqProBtn" aria-label="Abrir MQ AI Pro" title="MQ AI Pro con archivos">📎</button>
+
+<div id="mqProFrame" class="mq-pro-frame" role="dialog" aria-label="MQ AI Pro">
+  <div class="mq-pro-header">
+    <span>MQ AI Pro</span>
+    <div>
+      <button id="mqProMin" title="Minimizar">—</button>
+      <button id="mqProClose" title="Cerrar">✕</button>
+    </div>
+  </div>
+  <iframe src="https://maxiqueen-os-framework.vercel.app/" allow="microphone;clipboard-read;clipboard-write"></iframe>
+</div>
+
+<script>
+(function(){
+  const btn = document.getElementById('mqProBtn');
+  const frame = document.getElementById('mqProFrame');
+  const closeBtn = document.getElementById('mqProClose');
+  const minBtn = document.getElementById('mqProMin');
+
+  function setOpen(open){
+    frame.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    localStorage.setItem('mqProOpen', open ? '1' : '0');
+  }
+
+  btn.onclick = () => setOpen(!frame.classList.contains('open'));
+  closeBtn.onclick = minBtn.onclick = () => setOpen(false);
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') setOpen(false);
+  });
+
+  // Clic fuera para cerrar
+  document.addEventListener('click', e => {
+    if(!frame.classList.contains('open')) return;
+    if(frame.contains(e.target) || btn.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  // Restaurar estado
+  if(localStorage.getItem('mqProOpen') === '1') setOpen(true);
+})();
+</script>
+<!-- /MQ PRO v2 -->
+    
 </body>
 </html>
