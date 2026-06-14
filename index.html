@@ -84,6 +84,24 @@
             transition: 0.5s;
         }
        .btn-cyber:hover::before { left: 100%; }
+
+        /* === MQ CALM MODE - pégalo al final de tu <style> === */
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
+ .glitch,.ring-1,.ring-2,.ring-3,.animate-pulse,.animate-ping { animation: none!important; }
+ .scanline { opacity: 0.04!important; }
+}
+/* baja el ruido siempre, no solo en móvil */
+.glitch { animation: glitch-anim 6s infinite; text-shadow: 0.02em 0 0 #ff007f, -0.02em 0 0 #00f0ff; }
+.ring-1 { animation-duration: 30s; }
+.ring-2 { animation-duration: 40s; }
+.ring-3 { animation-duration: 50s; }
+.scanline { z-index: 1!important; opacity: 0.08; pointer-events: none!important; }
+
+/* fix click bloqueo */
+#legalModal.hidden { display: none!important; pointer-events: none!important; }
+#legalModal { z-index: 100!important; }
+.mq-backend-chat-btn,.mq-pro-btn { z-index: 90!important; }
+#navbar-container { z-index: 50!important; 
     </style>
 </head>
 
