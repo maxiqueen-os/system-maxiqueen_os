@@ -13,3 +13,53 @@
 @import url('./components/footer.css');
 
 @import url('./pages/home.css');
+
+/* MQ LAYOUT LOCK - System-MaxiQueen_OS */
+html { scroll-behavior: auto !important; }
+.glitch, .glitch::before, .glitch::after {
+  animation: none !important;
+  text-shadow: none !important;
+  content: none !important;
+  position: static !important;
+}
+#hero-container h1, .hero-title {
+  min-height: 3.2rem;
+  line-height: 1.2;
+}
+.mq-card { min-height: 220px; }
+img, iframe, video { display: block; max-width: 100%; }
+#legalModal.hidden { display: none !important; pointer-events: none !important; }
+/* apaga los que mueven el DOM */
+#particles-canvas, .scanline { display: none !important; }
+
+/* === MQ CALM MODE - 2026-06-13 === */
+/* pégalo AL FINAL de css/main.css */
+
+html { scroll-behavior: auto; }
+
+/* calma las animaciones locas */
+.glitch { animation: glitch-anim 6s infinite; text-shadow: 0.02em 0 0 #ff007f, -0.02em 0 0 #00f0ff; }
+.ring-1 { animation-duration: 30s !important; }
+.ring-2 { animation-duration: 40s !important; }
+.ring-3 { animation-duration: 50s !important; }
+
+.scanline { 
+  z-index: 1 !important; 
+  opacity: 0.06 !important; 
+  pointer-events: none !important; 
+}
+
+/* fix click bloqueo */
+#legalModal.hidden { display: none !important; pointer-events: none !important; }
+#legalModal { z-index: 100 !important; }
+.mq-backend-chat-btn, .mq-pro-btn { z-index: 90 !important; }
+#navbar-container, .mq-navbar { z-index: 50 !important; }
+
+/* respeta si el usuario pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .glitch, .ring-1, .ring-2, .ring-3, .animate-pulse, .animate-ping {
+    animation: none !important;
+  }
+  .scanline { opacity: 0.03 !important; }
+}
+/* === /MQ CALM MODE === */
