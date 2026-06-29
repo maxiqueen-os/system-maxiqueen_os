@@ -424,6 +424,328 @@
     <script src="js/app.js" defer></script>
     <script src="/js/compressor.js" defer></script>
 
+    <section class="mq-relax-zone">
+    <!-- Botón Maestro con Estado Dinámico y Animación de Pulso -->
+    <button class="btn-anclaje-master" id="btnAnclajeMaster">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="btn-content">👑 Modo Anclaje: <strong id="modeText">DESACTIVADO</strong></span>
+        <!-- Ondas de voz ocultas que aparecen al hablar -->
+        <div class="voice-bars" id="voiceBars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </button>
+
+    <!-- Panel de Portales con Transición Holográfica -->
+    <div class="portals-panel" id="portalsPanel">
+        <div class="panel-header">
+            <h2>⚡ RELAX HUB</h2>
+            <p>Experiencias integradas para optimizar tu enfoque y entretenimiento</p>
+        </div>
+
+        <div class="portals-grid">
+            <button class="portal-card" data-url="JUEGOS_MAXIQUEEN.html">
+                <span class="card-icon">🎮</span>
+                <h3>Multiverso</h3>
+            </button>
+            <button class="portal-card" data-url="JUEGOV2.html">
+                <span class="card-icon">🌀</span>
+                <h3>Matrix Core</h3>
+            </button>
+            <button class="portal-card" data-url="Anclajev2.html">
+                <span class="card-icon">✨</span>
+                <h3>Portal Flujo</h3>
+            </button>
+        </div>
+
+        <!-- Contenedor del Iframe con carga suave -->
+        <div id="portalContainer"></div>
+    </div>
+</section>
+
+<!-- --- ESTILOS ULTRA-PRO (Cyberpunk Slick) --- -->
+<style>
+    .mq-relax-zone {
+        max-width: 1200px;
+        margin: 40px auto;
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        padding: 0 20px;
+    }
+
+    /* BOTÓN MAESTRO GENERAL */
+    .btn-anclaje-master {
+        background: #111122;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        color: #fff;
+        padding: 14px 28px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        letter-spacing: 0.5px;
+    }
+
+    .btn-anclaje-master:hover {
+        border-color: #00f0ff;
+        box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        transform: translateY(-1px);
+    }
+
+    /* Punto de Estado Interactivo */
+    .status-dot {
+        width: 10px;
+        height: 10px;
+        background: #ff3b30;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #ff3b30;
+        transition: all 0.3s;
+    }
+
+    /* Estado Activo del Botón */
+    .btn-anclaje-master.system-on {
+        border-color: #39ff14;
+        box-shadow: 0 0 25px rgba(57, 255, 20, 0.25);
+        background: #0d1f10;
+    }
+    .btn-anclaje-master.system-on .status-dot {
+        background: #39ff14;
+        box-shadow: 0 0 10px #39ff14;
+        animation: activePulse 1.5s infinite;
+    }
+
+    @keyframes activePulse {
+        0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; }
+    }
+
+    /* PANEL DESPLEGABLE */
+    .portals-panel {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 25px;
+        background: rgba(15, 15, 25, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 0 30px;
+        backdrop-filter: blur(20px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Clase de activación que maneja tu script */
+    .portals-panel.active {
+        max-height: 1100px; /* Espacio suficiente para albergar el iframe */
+        opacity: 1;
+        padding: 30px;
+        border-color: rgba(0, 240, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .panel-header h2 {
+        color: #00f0ff;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+    }
+    .panel-header p {
+        color: #888899;
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+    }
+
+    /* GRID DE TARJETAS BOTÓN */
+    .portals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .portal-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 20px;
+        color: white;
+        text-align: left;
+        transition: all 0.25s ease;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .portal-card:hover {
+        background: rgba(0, 240, 255, 0.05);
+        border-color: #00f0ff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 240, 255, 0.1);
+    }
+
+    /* Estado seleccionado de la tarjeta */
+    .portal-card.selected-card {
+        background: rgba(212, 175, 55, 0.08);
+        border-color: #d4af37;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    }
+
+    .card-icon { font-size: 2rem; }
+    .portal-card h3 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+
+    /* CONTENEDOR DEL PORTAL (IFRAME) */
+    #portalContainer {
+        margin-top: 25px;
+        height: 700px;
+        display: none;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        animation: frameSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes frameSlideIn {
+        from { transform: translateY(15px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    #portalContainer iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #000;
+    }
+
+    /* ECUALIZADOR VISUAL DE VOZ */
+    .voice-bars {
+        display: none;
+        align-items: flex-end;
+        gap: 2px;
+        height: 14px;
+        margin-left: auto;
+    }
+    .voice-bars span {
+        width: 2px; height: 3px; background: #39ff14;
+        animation: barBounce 0.4s ease-in-out infinite alternate;
+    }
+    .voice-bars span:nth-child(2) { animation-delay: 0.1s; }
+    .voice-bars span:nth-child(3) { animation-delay: 0.2s; }
+    .voice-bars span:nth-child(4) { animation-delay: 0.3s; }
+
+    @keyframes barBounce { from { height: 3px; } to { height: 14px; } }
+</style>
+
+<!-- --- SCRIPT DE COMPORTAMIENTO AVANZADO --- -->
+<script>
+    const btnMaster = document.getElementById("btnAnclajeMaster");
+    const panelArea = document.getElementById("portalsPanel");
+    const frameContainer = document.getElementById("portalContainer");
+    const modeText = document.getElementById("modeText");
+    const voiceBars = document.getElementById("voiceBars");
+
+    // Audio Context Nativo para efectos FX cortos sin archivos externos
+    let fxAudioCtx;
+    function playSystemFx(frequency, type = 'sine', duration = 0.08) {
+        if (!fxAudioCtx) fxAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = fxAudioCtx.createOscillator();
+        const gain = fxAudioCtx.createGain();
+        osc.connect(gain); gain.connect(fxAudioCtx.destination);
+        osc.type = type;
+        osc.frequency.setValueAtTime(frequency, fxAudioCtx.currentTime);
+        gain.gain.setValueAtTime(0.1, fxAudioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, fxAudioCtx.currentTime + duration);
+        osc.start(); osc.stop(fxAudioCtx.currentTime + duration);
+    }
+
+    // Lógica humana de voz fluida (Web Speech API)
+    function ejecutarLocucionHumana() {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel(); // Reset por seguridad
+            
+            const speechText = "Hola. He preparado este espacio exclusivo de relajación para ti. Mientras atendemos tus solicitudes, puedes explorar cualquiera de nuestros tres portales interactivos aquí abajo. Elige el que prefieras para distraerte y disfrutar.";
+            const utterance = new SpeechSynthesisUtterance(speechText);
+            
+            utterance.lang = 'es-MX'; 
+            utterance.rate = 0.95; // Velocidad ligeramente pausada para sonar empático y cálido
+            utterance.pitch = 1.02; // Tono optimista natural
+
+            // Buscar la voz con mejor fidelidad en el navegador del cliente
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(v => v.lang.includes('es-MX') || v.lang.includes('es-ES'));
+            if (preferredVoice) utterance.voice = preferredVoice;
+
+            // Mostrar barras de audio animadas mientras habla
+            utterance.onstart = () => voiceBars.style.display = 'flex';
+            utterance.onend = () => voiceBars.style.display = 'none';
+            utterance.onerror = () => voiceBars.style.display = 'none';
+
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    // Toggle de Activación Principal del Panel
+    btnMaster.addEventListener("click", () => {
+        const isCurrentlyActive = panelArea.classList.toggle("active");
+        
+        if (isCurrentlyActive) {
+            playSystemFx(587.33, 'triangle', 0.15); // Sonido Sci-Fi ascendente
+            btnMaster.classList.add("system-on");
+            modeText.innerText = "ACTIVADO";
+            ejecutarLocucionHumana();
+            
+            // Auto-recuperación inteligente por LocalStorage
+            const lastSavedPortal = localStorage.getItem("mq_last_portal");
+            if (lastSavedPortal) {
+                cargarPortalIframe(lastSavedPortal);
+            }
+        } else {
+            playSystemFx(293.66, 'sine', 0.12); // Sonido descendente
+            btnMaster.classList.remove("system-on");
+            modeText.innerText = "DESACTIVADO";
+            frameContainer.style.display = "none";
+            if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+            voiceBars.style.display = 'none';
+            
+            // Remover highlight de tarjetas activos
+            document.querySelectorAll(".portal-card").forEach(c => c.classList.remove("selected-card"));
+        }
+    });
+
+    // Manejo de clicks en las tarjetas de juego
+    document.querySelectorAll(".portal-card").forEach(card => {
+        card.addEventListener("click", () => {
+            playSystemFx(880, 'sine', 0.06); // Sonido corto click pro
+            
+            const targetUrl = card.dataset.url;
+            cargarPortalIframe(targetUrl);
+            
+            // Guardar progreso en almacenamiento local
+            localStorage.setItem("mq_last_portal", targetUrl);
+        });
+    });
+
+    // Función modularizada para inyectar y marcar el portal seleccionado
+    function cargarPortalIframe(url) {
+        frameContainer.style.display = "block";
+        frameContainer.innerHTML = `<iframe src="${url}"></iframe>`;
+        
+        // Actualizar estados visuales de la tarjeta seleccionada
+        document.querySelectorAll(".portal-card").forEach(c => {
+            if(c.dataset.url === url) {
+                c.classList.add("selected-card");
+            } else {
+                c.classList.remove("selected-card");
+            }
+        });
+    }
+
+    // Pre-cargar voces en navegadores Chromium
+    if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => {};
+    }
+</script>
+    
 <!-- MQ PRO v2.3 - ACADEMIA -->
 <style>
  .mq-pro-btn {
